@@ -42,8 +42,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :buyers
-- has_many :transaction
+- has_many :item_purchases
 
 ## items テーブル
 
@@ -80,14 +79,16 @@ Things you may want to cover:
 | building_name          | string     |             |
 | phone_number           | string     | null: false |
 | item                   | references | null: false, foreign_key: true |
+| item_purchase          | references | null: false, foreign_key: true |
 
 - belongs_to :item
 - belongs_to_active_hash :prefectures
 
-## transactions テーブル　
+## item_purchases テーブル　
 
-| users              | references | null: false, foreign_key: true |
-| items              | references | null: false, foreign_key: true |
+| user              | references | null: false, foreign_key: true |
+| item              | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - belongs_to :item
+- has_one :account
