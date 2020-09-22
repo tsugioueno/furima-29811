@@ -35,7 +35,7 @@ Things you may want to cover:
 | first_name     | string | null: false |
 | last_name_kana | string | null: false |
 | first_name_kana| string | null: false |
-| birthday       | string | null: false |
+| birthday       | data   | null: false |
 
 
 
@@ -61,8 +61,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- belongs_to :buyer
-- has_many :transaction
+- has_many :item_purchases
 - belongs_to_active_hash :category
 - belongs_to_active_hash :product_condition
 - belongs_to_active_hash :shipping_charges
@@ -78,10 +77,9 @@ Things you may want to cover:
 | municipality           | string     | null: false |
 | building_name          | string     |             |
 | phone_number           | string     | null: false |
-| item                   | references | null: false, foreign_key: true |
 | item_purchase          | references | null: false, foreign_key: true |
 
-- belongs_to :item
+- belongs_to :item_purchase
 - belongs_to_active_hash :prefectures
 
 ## item_purchases テーブル　
@@ -91,4 +89,4 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one :account
+- has_one :buyer
