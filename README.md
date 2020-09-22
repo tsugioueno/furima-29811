@@ -43,44 +43,51 @@ Things you may want to cover:
 
 - has_many :items
 - has_many :buyers
+- has_many :transaction
 
 ## items テーブル
 
-| Column           | Type       | Options     |
-| -----------------| -----------| ----------- |
-| product_name     | string     | null: false |
-| product_text     | text       | null: false |
-| category         | string     | null: false |
-| product_condition| string     | null: false |
-| shipping_charges | string     | null: false |
-| shipping_area    | string     | null: false |
-| days_to_ship     | string     | null: false |
-| price            | string     | null: false |
-| pales_commission | string     | null: false |
-| sales_profit     | string     | null: false |
-| user_id          | references | null: false, foreign_key: true |
+| Column              | Type       | Options     |
+| --------------------| -----------| ----------- |
+| product_name        | string     | null: false |
+| product_text        | text       | null: false |
+| category_id         | integer    | null: false |
+| product_condition_id| integer    | null: false |
+| shipping_charges_id | integer    | null: false |
+| shipping_area_id    | integer    | null: false |
+| days_to_ship_id     | integer    | null: false |
+| price               | integer    | null: false |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :users
+- belongs_to :user
 - belongs_to :buyer
+- has_many :transaction
+- belongs_to_active_hash :category
+- belongs_to_active_hash :product_condition
+- belongs_to_active_hash :shipping_charges
+- belongs_to_active_hash :shipping_area
+- belongs_to_active_hash :days_to_ship
 
 ## buyers テーブル
 
 | Column                 | Type       | Options     |
 | -----------------------| -----------| ----------- |
-| credit_card_information| string     | null: false |
-| expiration_date_month  | string     | null: false |
-| expiration_date_year   | string     | null: false |
-| security_information   | string     | null: false |
 | postal_code            | string     | null: false |
 | prefectures_id         | integer    | null: false |
 | municipality           | string     | null: false |
 | building_name          | string     |             |
 | phone_number           | string     | null: false |
 | item                   | references | null: false, foreign_key: true |
-| user                   | references | null: false, foreign_key: true |
 
 - belongs_to :item
-- belongs_to :user
 - belongs_to_active_hash :prefectures
+
+## transactions テーブル　
+
+| users              | references | null: false, foreign_key: true |
+| items              | references | null: false, foreign_key: true |
+
+- belongs_to :user
+- belongs_to :item
