@@ -28,37 +28,36 @@ Things you may want to cover:
 
 | Column         | Type   | Options     |
 | ---------------| ------ | ----------- |
-| Nick Name      | string | null: false |
-| Email Address  | string | null: false |
-| Password       | string | null: false |
-| Last Name      | string | null: false |
-| First Name     | string | null: false |
-| Last Name KANA | string | null: false |
-| First Name KANA| string | null: false |
-| Birthday year  | string | null: false |
-| Birthday month | string | null: false |
-| Birthday day   | string | null: false |
+| nick_name      | string | null: false |
+| email_address  | string | null: false |
+| password       | string | null: false |
+| last_name      | string | null: false |
+| first_name     | string | null: false |
+| last_name_kana | string | null: false |
+| first_name_kana| string | null: false |
+| birthday       | string | null: false |
+
 
 
 ### Association
 
 - has_many :items
+- has_many :buyers
 
 ## items テーブル
 
 | Column           | Type       | Options     |
 | -----------------| -----------| ----------- |
-| Pictre           | string     | null: false |
-| Product Name     | string     | null: false |
-| Product text     | string     | null: false |
-| Category         | string     | null: false |
-| Product condition| string     | null: false |
-| Shipping charges | string     | null: false |
-| Shipping area    | string     | null: false |
-| Days to ship     | string     | null: false |
-| Price            | string     | null: false |
-| Sales commission | string     | null: false |
-| Sales profit     | string     | null: false |
+| product_name     | string     | null: false |
+| product_text     | text       | null: false |
+| category         | string     | null: false |
+| product_condition| string     | null: false |
+| shipping_charges | string     | null: false |
+| shipping_area    | string     | null: false |
+| days_to_ship     | string     | null: false |
+| price            | string     | null: false |
+| pales_commission | string     | null: false |
+| sales_profit     | string     | null: false |
 | user_id          | references | null: false, foreign_key: true |
 
 ### Association
@@ -66,19 +65,22 @@ Things you may want to cover:
 - has_many :users
 - belongs_to :buyer
 
-## buyer テーブル
+## buyers テーブル
 
 | Column                 | Type       | Options     |
 | -----------------------| -----------| ----------- |
-| Credit card information| string     | null: false |
-| Expiration date month  | string     | null: false |
-| Expiration date year   | string     | null: false |
-| Security information   | string     | null: false |
-| Postal code            | string     | null: false |
-| Prefectures            | string     | null: false |
-| Municipality           | string     | null: false |
-| Building name          | string     | null: false |
-| Phone number           | string     | null: false |
-| item_id                | references | null: false, foreign_key: true |
+| credit_card_information| string     | null: false |
+| expiration_date_month  | string     | null: false |
+| expiration_date_year   | string     | null: false |
+| security_information   | string     | null: false |
+| postal_code            | string     | null: false |
+| prefectures_id         | integer    | null: false |
+| municipality           | string     | null: false |
+| building_name          | string     |             |
+| phone_number           | string     | null: false |
+| item                   | references | null: false, foreign_key: true |
+| user                   | references | null: false, foreign_key: true |
 
-- belongs_to :items
+- belongs_to :item
+- belongs_to :user
+- belongs_to_active_hash :prefectures
