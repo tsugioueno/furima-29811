@@ -7,6 +7,7 @@ class User < ApplicationRecord
          has_many :items
          has_many :item_purchases  # commentsテーブルとのアソシエーション
 
-         validates :nick_name, presence: true, length: { maximum: 6 }
+         validates :password, format: { with:/[a-z\d]/i}
+         validates :email, format: { with:/@.+/}
 
 end
