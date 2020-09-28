@@ -7,7 +7,13 @@ class User < ApplicationRecord
          has_many :items
          has_many :item_purchases  # commentsテーブルとのアソシエーション
 
-         validates :password, format: { with:/[a-z\d]/i}
-         validates :email, format: { with:/@.+/}
+         validates :nick_name, presence: true
+         validates :email, presence: true, format: { with:/@.+/}
+         validates :password, presence: true, format: { with:/[a-z\d]{6,}/i}
+         validates :first_name, presence: true
+         validates :last_name, presence: true
+         validates :first_name_kana, presence: true
+         validates :last_name_kana, presence: true
+         validates :birthday, presence: true
 
 end
