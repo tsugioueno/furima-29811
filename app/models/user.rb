@@ -7,13 +7,24 @@ class User < ApplicationRecord
          has_many :items
          has_many :item_purchases  # commentsテーブルとのアソシエーション
 
-         validates :nick_name, presence: true
-         validates :email, presence: true, format: { with:/@.+/}
-         validates :password, presence: true, format: { with:/[a-z\d]{6,}/i}
-         validates :first_name, presence: true
-         validates :last_name, presence: true
-         validates :first_name_kana, presence: true
-         validates :last_name_kana, presence: true
-         validates :birthday, presence: true
+         with_options presence: true do
+         validates :nick_name
+         validates :email, format: { with:/@.+/}
+         validates :password, format: { with:/[a-z\d]{6,}/i}
+         validates :first_name
+         validates :last_name
+         validates :first_name_kana
+         validates :last_name_kana
+         validates :birthday
+         end
 
+         with_options format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'は漢字、カタカナ、ひらがなで入力して下さい。'} do
+          validates :first_name
+          validates :last_name
+         end
+
+         with_options format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'} do
+          validates :first_name_kana
+          validates :last_name_kana
+         end
 end

@@ -48,11 +48,24 @@ describe User do
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
+      it "名前が漢字、カタカナ、ひらがな以外では登録できない" do
+        @user.first_name = "hoge"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name は漢字、カタカナ、ひらがなで入力して下さい。")
+      end
+
       it "苗字が空では登録できない" do
         @user.last_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
+
+      it "苗字が漢字、カタカナ、ひらがな以外では登録できない" do
+        @user.last_name = "hoge"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name は漢字、カタカナ、ひらがなで入力して下さい。")
+      end
+
 
       it "名前（カナ）が空では登録できない" do
         @user.first_name_kana = ""
@@ -60,11 +73,25 @@ describe User do
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
 
+      it "名前（カナ）はカタカナ以外では登録できない" do
+        @user.first_name_kana = "hoge"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana はカタカナで入力して下さい。")
+      end
+
+
       it "苗字（カナ）が空では登録できない" do
         @user.last_name_kana = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
+
+      it "苗字（カナ）はカタカナ以外では登録できない" do
+        @user.last_name_kana = "hoge"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana はカタカナで入力して下さい。")
+      end
+
 
       it "誕生日が空では登録できない" do
         @user.birthday = ""
