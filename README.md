@@ -56,7 +56,7 @@ Things you may want to cover:
 | shipping_area_id    | integer    | null: false |
 | days_to_ship_id     | integer    | null: false |
 | price               | integer    | null: false |
-| user                | references | null: false, foreign_key: true |
+| user                | references | foreign_key: true |
 
 ### Association
 
