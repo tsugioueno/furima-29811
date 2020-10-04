@@ -16,6 +16,8 @@ class Item < ApplicationRecord
  with_options presence: true do
   validates :product_name
   validates :product_text
-  validates :price
+  validates :price, numericality: { message: 'は半角数字で入力して下さい。' }
+  #validates :price, format: {with:/\A[0-9]+\z/, message: 'は半角数字で入力して下さい。'}
+
  end
 end

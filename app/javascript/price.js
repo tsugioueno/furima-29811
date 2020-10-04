@@ -6,18 +6,17 @@ function price(){
    // 価格入力時に手数料、利益計算
      priceInput.addEventListener('keyup', () => {
          const value = priceInput.value; //value（入力の金額を定義）
-         
+         let fee;
+         let gains;
        if (value >= 300 && value <= 9999999){
-         let fee = value * 0.1
-         let gains = value - fee
-         add_tax.textContent = fee;
-         profit.textContent = gains;
+         fee = value * 0.1
+         gains = value - fee
      } else {
-       let fee = '-';
-       let gains = '-';
-       add_tax.textContent = fee;
-       profit.textContent = gains;
+       fee = '-';
+       gains = '-';
      }
+     add_tax.textContent = fee;
+     profit.textContent = gains;
    });
   
   }
