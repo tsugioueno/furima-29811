@@ -19,10 +19,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  private
-  def item_params
-    params.require(:item).permit(:image,:product_name,:product_text,:category_id, :product_condition_id, :shipping_charge_id,:shipping_area_id,:days_to_ship_id,:price).merge(user_id: current_user.id)
-
+  def show
+    @item = Item.new
+    @items = Item.includes(:user)
   end
 
   def destroy
@@ -32,8 +31,10 @@ class ItemsController < ApplicationController
     unless user_signed_in?
       redirect_to action: :index
     end
-
-
   end
 
+  private
+  def item_params
+    params.require(:item).permit(:image,:product_name,:product_text,:category_id, :product_condition_id, :shipping_charge_id,:shipping_area_id,:days_to_ship_id,:price).merge(user_id: current_user.id)
+  end
 end
