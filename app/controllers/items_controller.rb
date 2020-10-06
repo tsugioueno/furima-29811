@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render :show
+      render :new
     end
   end
 
@@ -27,8 +27,9 @@ class ItemsController < ApplicationController
   def destroy
     if @item.destroy
     redirect_to root_path
-    else
-      render 
+  else
+    render :edit
+  end
   end
 
   def edit
@@ -46,6 +47,10 @@ class ItemsController < ApplicationController
     unless user_signed_in?
       redirect_to action: :index
     end
+  end
+
+  def find_item
+    @item = Item.find(params[:id])
   end
 
   private
