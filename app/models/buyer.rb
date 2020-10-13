@@ -5,6 +5,6 @@ class Buyer < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :shipping_area
   
-  validates :token, presence: true
+  # validates :token, presence: true
 
 end
