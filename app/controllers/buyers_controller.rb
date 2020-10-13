@@ -1,9 +1,12 @@
 class BuyersController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :find_item, only: [:index, :create]
 
 
   def index
+    if current_user.id == @item.user_id || @buyer_item_purchase.present?
+      return redirect_to root_path
+    end
     @buyer = Buyer.new
     @buyer_item_purchase = BuyerItemPurchase.new
   end
@@ -37,4 +40,5 @@ class BuyersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
 end
