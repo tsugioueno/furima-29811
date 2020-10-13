@@ -1,14 +1,15 @@
 class BuyersController < ApplicationController
 
+  before_action :find_item, only: [:index, :create]
+
+
   def index
-    @item = Item.find(params[:item_id])
     @buyer = Buyer.new
     @buyer_item_purchase = BuyerItemPurchase.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @buyer_item_purchase = BuyerItemPurchase.new(buyer_params)
+  @buyer_item_purchase = BuyerItemPurchase.new(buyer_params)
     if @buyer_item_purchase.valid?
       pay_item
       @buyer_item_purchase.save
@@ -16,6 +17,10 @@ class BuyersController < ApplicationController
     else
       render 'index'
     end
+  end
+
+  def find_item
+    @item = Item.find(params[:item_id])
   end
 
   private

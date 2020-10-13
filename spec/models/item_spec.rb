@@ -12,7 +12,8 @@
 
       it '画像が必須できること' do
         @item.image = nil
-        expect(@item).to be_valid
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
 
       it "商品名が空だと登録できない" do

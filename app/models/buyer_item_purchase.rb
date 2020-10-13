@@ -6,7 +6,7 @@ class BuyerItemPurchase
     validates :shipping_area_id
     validates :city
     validates :addresses
-    validates :phone_number
+    validates :phone_number, length: {maximum: 11, message: 'は11桁以内で入力して下さい。'} ,format: {with: /\A[0-9]{9,11}/, message: 'は数字のみで入力して下さい。'}
     validates :token
   end
     validates :phone_number, numericality: { message: 'は半角数字で入力して下さい。' }

@@ -65,5 +65,17 @@ RSpec.describe BuyerItemPurchase, type: :model do
     expect(@buyer_item_purchase.errors.full_messages).to include("Phone number は半角数字で入力して下さい。")
   end
 
+  it "電話番号は11桁以内でないと登録できない" do
+    @buyer_item_purchase.phone_number = "00000000000000"
+    @buyer_item_purchase.valid?
+    expect(@buyer_item_purchase.errors.full_messages).to include("Phone number は11桁以内で入力して下さい。")
+  end
+
+  it "電話番号は数字以外は登録できない" do
+    @buyer_item_purchase.phone_number = "000-00-000"
+    @buyer_item_purchase.valid?
+    expect(@buyer_item_purchase.errors.full_messages).to include("Phone number は数字のみで入力して下さい。")
+  end
+
   end
 end
