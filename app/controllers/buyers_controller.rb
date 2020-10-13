@@ -22,9 +22,6 @@ class BuyersController < ApplicationController
     end
   end
 
-  def find_item
-    @item = Item.find(params[:item_id])
-  end
 
   private
 
@@ -39,6 +36,11 @@ class BuyersController < ApplicationController
       card: buyer_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+
+  def find_item
+    @item = Item.find(params[:item_id])
   end
 
 end

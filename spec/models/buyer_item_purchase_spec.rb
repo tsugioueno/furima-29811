@@ -11,6 +11,11 @@ RSpec.describe BuyerItemPurchase, type: :model do
     expect(@buyer_item_purchase).to be_valid
   end
 
+  it "建物以外に空がなければ登録できること" do
+    @buyer_item_purchase.building_name = nil
+    expect(@buyer_item_purchase).to be_valid
+  end
+
   it "tokenが空では登録できないこと" do
     @buyer_item_purchase.token = nil
     @buyer_item_purchase.valid?

@@ -12,7 +12,6 @@
       exp_month: document.getElementById('card-exp-month').value,
       exp_year: `20${document.getElementById('card-exp-year').value}`,
     };
-    console.log(card)
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
         const token = response.id;

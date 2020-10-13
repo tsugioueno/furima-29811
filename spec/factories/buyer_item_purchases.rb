@@ -5,6 +5,7 @@ FactoryBot.define do
     shipping_area_id      {2}
     city                  {"osaka"}
     addresses             {"1-1"}
+    building_name         {"tatemono"}
     phone_number          {"00099997777"}
   end
 end
