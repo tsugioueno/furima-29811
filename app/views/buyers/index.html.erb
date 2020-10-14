@@ -33,6 +33,10 @@
 
     <%= form_with  model: @buyer_item_purchase, url: item_buyers_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
+        <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <%= render 'shared/error_messages', model: f.object %>
+    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
         クレジットカード情報入力
